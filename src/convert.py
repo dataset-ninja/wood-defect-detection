@@ -63,7 +63,7 @@ def download_dataset(teamfiles_dir: str):
             local_path = os.path.join(storage_dir, file_name_with_ext)
             teamfiles_path = os.path.join(teamfiles_dir, file_name_with_ext)
 
-            if os.path.exists(get_file_name(local_path)):
+            if not os.path.exists(get_file_name(local_path)):
                 api.file.download(team_id, teamfiles_path, local_path)
 
                 sly.logger.info(f"Start unpacking archive {file_name_with_ext}...")
