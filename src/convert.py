@@ -56,7 +56,8 @@ def download_dataset(teamfiles_dir: str):
         api.file.download(team_id, teamfiles_path, local_path)
 
         dataset_path = unpack_if_archive(local_path)
-        os.remove(local_path)
+        if dataset_path != local_path:
+            os.remove(local_path)
 
     if isinstance(s.DOWNLOAD_ORIGINAL_URL, dict):
         for file_name_with_ext, url in s.DOWNLOAD_ORIGINAL_URL.items():
@@ -68,14 +69,15 @@ def download_dataset(teamfiles_dir: str):
 
                 sly.logger.info(f"Start unpacking archive {file_name_with_ext}...")
                 start = time.time()
-                unpack_if_archive(local_path)
+                unpacked = unpack_if_archive(local_path)
                 end = time.time()
                 res = end - start
                 sly.logger.info(f"Archive {file_name_with_ext} was unpacked in {res}s")
-                os.remove(local_path)
+                if unpacked != local_path:
+                    os.remove(local_path)
             else:
                 sly.logger.info(
-                    f"Archive '{file_name_with_ext}' was already unpacked to '{get_file_name(file_name_with_ext)}'. Skipping..."
+                    f"Archive '{file_name_with_ext}' was already unpacked to '{os.path.join(storage_dir, get_file_name(file_name_with_ext))}'. Skipping..."
                 )
 
         dataset_path = storage_dir
