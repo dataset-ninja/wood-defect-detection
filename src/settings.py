@@ -6,7 +6,7 @@ from dataset_tools.templates import AnnotationType, CVTask, Industry, License
 # * Before uploading to instance #
 ##################################
 PROJECT_NAME: str = "Wood Defect Detection"
-PROJECT_NAME_FULL: str = "Wood Defect Detection"
+PROJECT_NAME_FULL: str = "Supporting data for Deep Learning and Machine Vision based approaches for automated wood defect detection and quality control."
 
 ##################################
 # * After uploading to instance ##
@@ -57,9 +57,9 @@ CLASS2COLOR: Optional[Dict[str, List[str]]] = None
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
 PAPER: Optional[str] = None
-CITATION_URL: Optional[str] = None
-ORGANIZATION_NAME: Optional[Union[str, List[str]]] = None
-ORGANIZATION_URL: Optional[Union[str, List[str]]] = None
+CITATION_URL: Optional[str] = "https://zenodo.org/record/4694695#.YkWqTX9Bzmg"
+ORGANIZATION_NAME: Optional[Union[str, List[str]]] = "VSB TUO, Czech Republic"
+ORGANIZATION_URL: Optional[Union[str, List[str]]] = "https://www.vsb.cz/en"
 TAGS: List[str] = None
 
 ##################################
