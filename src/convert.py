@@ -48,31 +48,37 @@ def download_dataset(teamfiles_dir: str):
 
     if isinstance(s.DOWNLOAD_ORIGINAL_URL, str):
         parsed_url = urlparse(s.DOWNLOAD_ORIGINAL_URL)
-        file_name = os.path.basename(parsed_url.path)
-        file_name = unquote(file_name)
+        file_name_with_ext = os.path.basename(parsed_url.path)
+        file_name_with_ext = unquote(file_name_with_ext)
 
-        local_path = os.path.join(storage_dir, file_name)
-        teamfiles_path = os.path.join(teamfiles_dir, file_name)
+        local_path = os.path.join(storage_dir, file_name_with_ext)
+        teamfiles_path = os.path.join(teamfiles_dir, file_name_with_ext)
         api.file.download(team_id, teamfiles_path, local_path)
 
         dataset_path = unpack_if_archive(local_path)
         os.remove(local_path)
 
     if isinstance(s.DOWNLOAD_ORIGINAL_URL, dict):
-        for file_name, url in s.DOWNLOAD_ORIGINAL_URL.items():
-            local_path = os.path.join(storage_dir, file_name)
-            teamfiles_path = os.path.join(teamfiles_dir, file_name)
-            api.file.download(team_id, teamfiles_path, local_path)
+        for file_name_with_ext, url in s.DOWNLOAD_ORIGINAL_URL.items():
+            local_path = os.path.join(storage_dir, file_name_with_ext)
+            teamfiles_path = os.path.join(teamfiles_dir, file_name_with_ext)
 
-            sly.logger.info("Start unpacking...")
-            start = time.time()
-            unpack_if_archive(local_path)
-            end = time.time()
-            res = end - start
-            sly.logger.info(f"Archive {file_name} was unpacked in {res}s")
-            os.remove(local_path)
+            if os.path.exists(get_file_name(local_path)):
+                api.file.download(team_id, teamfiles_path, local_path)
 
-        dataset_path = teamfiles_dir
+                sly.logger.info(f"Start unpacking archive {file_name_with_ext}...")
+                start = time.time()
+                unpack_if_archive(local_path)
+                end = time.time()
+                res = end - start
+                sly.logger.info(f"Archive {file_name_with_ext} was unpacked in {res}s")
+                os.remove(local_path)
+            else:
+                sly.logger.info(
+                    f"Archive '{file_name_with_ext}' was already unpacked to '{get_file_name(file_name_with_ext)}'. Skipping..."
+                )
+
+        dataset_path = storage_dir
     return dataset_path
 
 
