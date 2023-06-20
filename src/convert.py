@@ -1,6 +1,7 @@
 # https://zenodo.org/record/4694695#.YkWqTX9Bzmg
 
 import os
+import shutil
 import time
 from urllib.parse import unquote, urlparse
 
@@ -33,6 +34,7 @@ team_id = sly.env.team_id()
 # dataset_path = "/home/alex/DATASETS/TODO/wood defect detection"
 
 teamfiles_dir = "/4import/original_format/wood_defect_detection"
+storage_dir = sly.app.get_data_dir()
 batch_size = 100
 
 images_folder = "Images"
@@ -44,8 +46,6 @@ bbox_suffix = "_anno.txt"
 
 
 def download_dataset(teamfiles_dir: str):
-    storage_dir = sly.app.get_data_dir()
-
     if isinstance(s.DOWNLOAD_ORIGINAL_URL, str):
         parsed_url = urlparse(s.DOWNLOAD_ORIGINAL_URL)
         file_name_with_ext = os.path.basename(parsed_url.path)
@@ -204,5 +204,7 @@ def convert_and_upload_supervisely_project(
                 api.annotation.upload_anns(img_ids, anns_batch)
 
                 progress.iters_done_report(len(img_names_batch))
+
+    shutil.rmtree(storage_dir)
 
     return project
