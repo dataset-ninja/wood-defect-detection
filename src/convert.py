@@ -64,8 +64,10 @@ def unpack_if_archive(path: str) -> str:
         with zipfile.ZipFile(path, "r") as zip_ref:
             total_files = len(zip_ref.infolist())
 
-            for file in tqdm(iterable=zip_ref.infolist(), total=total_files, unit="file"):
-                zip_ref.extract(file, extraction_path)
+            with tqdm(desc="Unpacking zip...", total=total_files, unit="file") as pbar:
+                for file in zip_ref.infolist():
+                    zip_ref.extract(file, extraction_path)
+                    pbar.update(1)
 
             return extraction_path
 
