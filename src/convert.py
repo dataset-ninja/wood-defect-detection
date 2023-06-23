@@ -39,7 +39,7 @@ storage_dir = sly.app.get_data_dir()
 batch_size = 100
 
 images_folder = "Images"
-masks_folder = "Semantic Maps"
+masks_folder = "Semantic Maps/Semantic Maps"
 bboxes_folder = "Bouding_Boxes/Bouding Boxes"
 semantic_map_name = "Semantic Map Specification.txt"
 segm_suffix = "_segm"
@@ -64,7 +64,9 @@ def unpack_if_archive(path: str) -> str:
         with zipfile.ZipFile(path, "r") as zip_ref:
             total_files = len(zip_ref.infolist())
 
-            with tqdm(desc="Unpacking zip...", total=total_files, unit="file") as pbar:
+            with tqdm(
+                desc=f"Unpacking {get_file_name_with_ext(path)}...", total=total_files, unit="file"
+            ) as pbar:
                 for file in zip_ref.infolist():
                     zip_ref.extract(file, extraction_path)
                     pbar.update(1)
@@ -77,8 +79,12 @@ def unpack_if_archive(path: str) -> str:
         with tarfile.open(path, "r") as tar_ref:
             total_files = len(tar_ref.getnames())
 
-            for file in tqdm(iterable=tar_ref.getnames(), total=total_files, unit="file"):
-                tar_ref.extract(file, extraction_path)
+            with tqdm(
+                desc=f"Unpacking {get_file_name_with_ext(path)}...", total=total_files, unit="file"
+            ) as pbar:
+                for file in tar_ref.getnames():
+                    tar_ref.extract(file, extraction_path)
+                    pbar.update(1)
 
             return extraction_path
 
@@ -91,6 +97,7 @@ def download_dataset(teamfiles_dir: str):
         file_name_with_ext = os.path.basename(parsed_url.path)
         file_name_with_ext = unquote(file_name_with_ext)
 
+        sly.logger.info(f"Start unpacking archive {file_name_with_ext}...")
         local_path = os.path.join(storage_dir, file_name_with_ext)
         teamfiles_path = os.path.join(teamfiles_dir, file_name_with_ext)
         api.file.download(team_id, teamfiles_path, local_path)
@@ -108,11 +115,8 @@ def download_dataset(teamfiles_dir: str):
                 api.file.download(team_id, teamfiles_path, local_path)
 
                 sly.logger.info(f"Start unpacking archive {file_name_with_ext}...")
-                start = time.time()
                 unpacked = unpack_if_archive(local_path)
-                end = time.time()
-                res = end - start
-                sly.logger.info(f"Archive {file_name_with_ext} was unpacked in {res}s")
+
                 if unpacked != local_path:
                     os.remove(local_path)
             else:
@@ -220,22 +224,22 @@ def convert_and_upload_supervisely_project(
     meta = sly.ProjectMeta(obj_classes=obj_classes)
     api.project.update_meta(project.id, meta.to_json())
 
-    all_data = os.listdir(dataset_path)
+    all_dirs = os.listdir(dataset_path)
 
-    for curr_data in all_data:
-        images_path = os.path.join(dataset_path, curr_data)
-        if dir_exists(images_path) and curr_data[:6] == images_folder:
-            dataset = api.dataset.create(project.id, curr_data, change_name_if_conflict=True)
+    for curr_dir in all_dirs:
+        images_dir = os.path.join(dataset_path, curr_dir, curr_dir)
+        if dir_exists(images_dir) and curr_dir[:6] == images_folder:
+            dataset = api.dataset.create(project.id, curr_dir, change_name_if_conflict=True)
 
             masks_path = os.path.join(dataset_path, masks_folder)
             bboxes_path = os.path.join(dataset_path, bboxes_folder)
-            images_names = os.listdir(images_path)
+            images_names = os.listdir(images_dir)
 
-            progress = sly.Progress("Create dataset {}".format(curr_data), len(images_names))
+            progress = sly.Progress("Create dataset {}".format(curr_dir), len(images_names))
 
             for img_names_batch in sly.batched(images_names, batch_size=batch_size):
                 images_pathes_batch = [
-                    os.path.join(images_path, image_name) for image_name in img_names_batch
+                    os.path.join(images_dir, image_name) for image_name in img_names_batch
                 ]
                 img_infos = api.image.upload_paths(dataset.id, img_names_batch, images_pathes_batch)
                 img_ids = [im_info.id for im_info in img_infos]
