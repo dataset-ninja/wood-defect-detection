@@ -151,7 +151,11 @@ dataset_path = download_dataset(teamfiles_dir)
 semantic_map_path = os.path.join(dataset_path, semantic_map_name)
 name_to_obj_class = {}
 color_to_obj_class = {}
-error_name_to_real = {"Dead_Knot": "Death_know", "Live_Knot": "Live_knot"}
+error_name_to_real = {
+    "Dead_Knot": "Death_know",
+    "Live_Knot": "Live_knot",
+    "Blue_Stain": "Blue_stain",
+}
 with open(semantic_map_path) as f:
     content = f.read().split("\n")
     content.append(" ")
