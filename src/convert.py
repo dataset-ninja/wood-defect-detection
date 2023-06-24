@@ -147,7 +147,8 @@ def create_ann(image_path, masks_path, bboxes_path):
     return sly.Annotation(img_size=(img_height, img_wight), labels=labels)
 
 
-dataset_path = download_dataset(teamfiles_dir)
+# dataset_path = download_dataset(teamfiles_dir)
+dataset_path = storage_dir
 semantic_map_path = os.path.join(dataset_path, semantic_map_name)
 name_to_obj_class = {}
 color_to_obj_class = {}
