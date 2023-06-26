@@ -4,6 +4,6 @@ The dataset consists of 20276 images with 86803 labeled objects belonging to 20 
 
 Images in the Wood Defect Detection dataset has pixel-level instance segmentation and bounding box annotations. Due to the nature of the instance segmentation task, it can be automatically transformed into a semantic segmentation task (only one mask for every class). There are 1991 (10% of the total) unlabeled images (i.e. without annotations). There are 10 splits in the dataset: *Images4* (2000 images), *Images8* (2000 images), *Images1* (2000 images), *Images5* (2000 images), *Images10* (2276 images), *Images9* (2000 images), *Images7* (2000 images), *Images2* (2000 images), *Images6* (2000 images), and *Images3* (2000 images). The dataset was released in 2021 by the [VSB TUO, Czech Republic](https://www.vsb.cz/en).
 
-Here are the visualized examples for each of the 20 classes:
+Here is the visualized example grid with annotations:
 
-[Dataset classes](https://github.com/dataset-ninja/wood-defect-detection/raw/main/visualizations/classes_preview.webm)
+<img src="https://github.com/dataset-ninja/wood-defect-detection/raw/main/visualizations/horizontal_grid.png">
