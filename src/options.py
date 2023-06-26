@@ -7,7 +7,7 @@
 # * If None, then preview_class will be set automatically to "ClassesPreview"
 PREVIEW_CLASS = None
 
-IS_DETECTION_TASK: bool = None  # ? Set True if you want to visualize only bbox annotations
+IS_DETECTION_TASK: bool = "HorizontalGrid"  # ? Set True if you want to visualize only bbox annotations
 
 ###############################################################
 ####### * Set up visualization params for Poster class ########
@@ -58,8 +58,8 @@ CLASSES_PREVIEW_PADDINGS: dict = None
 ### * Set up visualization params for ClassesHeatmaps class ###
 # args for "to_image" method
 DRAW_STYLE: str = None  # "inside_white" or "outside_black"
-HEATMAP_ROWS: int = None
-HEATMAP_COLS: int = None
+HEATMAP_ROWS: int = 5
+HEATMAP_COLS: int = 4
 HEATMAP_GRID_SPACING: int = None
 HEATMAP_OUTER_GRID_SPACING: int = None
 HEATMAP_OUTPUT_WIDTH: int = None # 1 class in dataset? -> 1600px for portrait images, 2200px for landscape
