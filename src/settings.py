@@ -20,7 +20,11 @@ PROJECT_NAME_FULL: str = "Supporting data for Deep Learning and Machine Vision b
 # * After uploading to instance ##
 ##################################
 LICENSE: License = License.CC_BY_4_0()
-APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Manufacturing()]
+APPLICATIONS: List[Union[Industry, Domain, Research]] = [
+    Industry.Wood(),
+    Industry.Manufacturing(),
+    Domain.ComputerAidedQualityControl(),
+]
 CATEGORY: Category = Category.Manufacturing()
 
 CV_TASKS: List[CVTask] = [
@@ -66,12 +70,34 @@ DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = {
 }
 # Optional link for downloading original dataset (e.g. "https://some.com/dataset/download")
 
-CLASS2COLOR: Optional[Dict[str, List[str]]] = None
+CLASS2COLOR: Optional[Dict[str, List[str]]] = {
+    "Live_knot": [0, 255, 0],
+    "Live_knot_bbox": [0, 255, 0],
+    "Death_know": [255, 0, 0],
+    "Death_know_bbox": [255, 0, 0],
+    "resin": [255, 0, 255],
+    "resin_bbox": [255, 0, 255],
+    "knot_with_crack": [255, 175, 0],
+    "knot_with_crack_bbox": [255, 175, 0],
+    "Crack": [255, 0, 100],
+    "Crack_bbox": [255, 0, 100],
+    "Marrow": [0, 0, 255],
+    "Marrow_bbox": [0, 0, 255],
+    "Quartzity": [100, 0, 100],
+    "Quartzity_bbox": [100, 0, 100],
+    "Knot_missing": [255, 100, 0],
+    "Knot_missing_bbox": [255, 100, 0],
+    "Blue_stain": [16, 255, 255],
+    "Blue_stain_bbox": [16, 255, 255],
+    "overgrown": [0, 64, 0],
+    "overgrown_bbox": [0, 64, 0],
+}
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
-PAPER: Optional[str] = None
+
+PAPER: Optional[str] = "https://f1000research.com/articles/10-581/v1"
 CITATION_URL: Optional[str] = "https://zenodo.org/record/4694695/export/hx"
-AUTHORS: Optional[List[str]] = None
+AUTHORS: Optional[List[str]] = ["Kodytek Pavel", "Bodzas Alexandra", "Bilik Petr"]
 
 ORGANIZATION_NAME: Optional[Union[str, List[str]]] = "VSB TUO, Czech Republic"
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = "https://www.vsb.cz/en"
