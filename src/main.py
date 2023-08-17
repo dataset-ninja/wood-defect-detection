@@ -66,6 +66,7 @@ if __name__ == "__main__":
     force_visuals = forces.get("force_visuals")
     force_texts = forces.get("force_texts")
 
+    settings['force_texts'] = force_texts
     project_repo = ProjectRepo(api, project_id, settings)
     project_repo.build_stats(force=force_stats, settings=stat_options)
     project_repo.build_visualizations(force=force_visuals, settings=vis_options)
