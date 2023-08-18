@@ -206,6 +206,7 @@ def convert_and_upload_supervisely_project(
     dataset = api.dataset.create(project.id, ds_name, change_name_if_conflict=True)
 
     all_data = os.listdir(dataset_path)
+    all_data = [os.path.join(direc, direc) for direc in all_data]
 
     for curr_data in all_data:
         images_path = os.path.join(dataset_path, curr_data)
