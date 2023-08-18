@@ -16,4 +16,4 @@ If you make use of the Wood Defect Detection data, please cite the following ref
 }
 ```
 
-[🔗 Source](https://zenodo.org/record/4694695#.YkWqTX9Bzmg)
+[Source](https://zenodo.org/record/4694695#.YkWqTX9Bzmg)
