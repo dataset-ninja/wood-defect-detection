@@ -9,8 +9,7 @@ from dotenv import load_dotenv
 import src.options as o
 import src.settings as s
 from dataset_tools import ProjectRepo
-
-# from src.convert import convert_and_upload_supervisely_project
+from src.convert import convert_and_upload_supervisely_project
 
 PARENT_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 LOCAL_ENV = os.path.join(PARENT_PATH, "local.env")
@@ -29,7 +28,7 @@ def get_project_info(api: sly.Api):
     if True:
         # If project doesn't found on instance, create it and use new project info.
         sly.logger.info(f"Project {s.PROJECT_NAME} not found on instance. Creating a new one...")
-        # project_info = convert_and_upload_supervisely_project(api, WORKSPACE_ID, s.PROJECT_NAME)
+        project_info = convert_and_upload_supervisely_project(api, WORKSPACE_ID, s.PROJECT_NAME)
         sly.logger.info("Now you can explore created project and choose 'preview_image_id'.")
         sys.exit(0)
     else:
