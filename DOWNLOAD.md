@@ -1,6 +1,6 @@
 Dataset **Wood Defect Detection** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/h/Y/L1/35MCfzo8IaAO56n87aV4Sc2iUeTJvb5hD3wlPIzfdCrttonqk1NkVveI7FBfw14AQtJqEsFlGLFF1ZzN3ikNnfdViYxHiv8qKEJ3KPNZC77RY8nKvsINmJRIekE3.tar)
+ [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/7/F/w6/nanLWlnJJW702BT9w76IVAZXW8rVX4MDnd474UuJgyAiKZ57QCGSZhc5UY6TXcVRBv5jSEdyUPDNwbRriFQWnUFnAvsx6tHalTKCmR9IRMogc7DvKKPv4EwAWCXt.tar)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
