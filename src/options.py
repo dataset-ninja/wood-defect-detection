@@ -58,7 +58,7 @@ CLASSES_PREVIEW_PADDINGS: dict = None
 ### * Set up visualization params for ClassesHeatmaps class ###
 # args for "to_image" method
 DRAW_STYLE: str = None  # "inside_white" or "outside_black"
-HEATMAP_ROWS: int = 5
+HEATMAP_ROWS: int = 2
 HEATMAP_COLS: int = 4
 HEATMAP_GRID_SPACING: int = None
 HEATMAP_OUTER_GRID_SPACING: int = None
