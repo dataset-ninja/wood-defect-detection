@@ -96,7 +96,7 @@ CLASS2COLOR: Optional[Dict[str, List[str]]] = {
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
 
-PAPER: Optional[str] = "https://f1000research.com/articles/10-581/v1"
+PAPER: Optional[str] = "https://f1000research.com/articles/10-581/v2"
 CITATION_URL: Optional[str] = "https://zenodo.org/record/4694695/export/hx"
 AUTHORS: Optional[List[str]] = ["Kodytek Pavel", "Bodzas Alexandra", "Bilik Petr"]
 
