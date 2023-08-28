@@ -65,6 +65,7 @@ if __name__ == "__main__":
     force_stats = forces.get("force_stats")
     force_visuals = forces.get("force_visuals")
     force_demo = forces.get("force_demo")
+    force_download_sly_url = forces.get("force_download_sly_url")
     force_texts = forces.get("force_texts")
 
     settings["force_texts"] = force_texts
