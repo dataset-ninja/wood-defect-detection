@@ -14,7 +14,7 @@ from dataset_tools.templates import (
 # * Before uploading to instance #
 ##################################
 PROJECT_NAME: str = "Wood Defect Detection"
-PROJECT_NAME_FULL: str = "Supporting data for Deep Learning and Machine Vision based approaches for automated wood defect detection and quality control"
+PROJECT_NAME_FULL: str = "Supporting Data for Deep Learning and Machine Vision Based Approaches for Automated Wood Defect Detection and Quality Control"
 HIDE_DATASET = False  # set False when 100% sure about repo quality
 
 ##################################
@@ -99,6 +99,7 @@ CLASS2COLOR: Optional[Dict[str, List[str]]] = {
 PAPER: Optional[str] = "https://f1000research.com/articles/10-581/v2"
 CITATION_URL: Optional[str] = "https://zenodo.org/record/4694695/export/hx"
 AUTHORS: Optional[List[str]] = ["Kodytek Pavel", "Bodzas Alexandra", "Bilik Petr"]
+AUTHORS_CONTACTS: Optional[List[str]] = ["alexandra.bodzas@vsb.cz"]
 
 ORGANIZATION_NAME: Optional[Union[str, List[str]]] = "VSB TUO, Czech Republic"
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = "https://www.vsb.cz/en"
@@ -146,6 +147,7 @@ def get_settings():
     settings["paper"] = PAPER
     settings["citation_url"] = CITATION_URL
     settings["authors"] = AUTHORS
+    settings["authors_contacts"] = AUTHORS_CONTACTS
     settings["organization_name"] = ORGANIZATION_NAME
     settings["organization_url"] = ORGANIZATION_URL
     settings["slytagsplit"] = SLYTAGSPLIT
